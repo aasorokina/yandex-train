@@ -1,16 +1,18 @@
 #include <iostream>
 #include <vector>
 
+using ll = long long int;
+
 int main() {
   int n, r;
   std::cin >> n >> r;
-  std::vector<long long int> vec(n);
+  std::vector<ll> vec(n);
   for (int i = 0; i < n; i++) {
     std::cin >> vec[i];
   }
   int left = 0, right = 1;
-  long long int count = 0;
-  long long int sum = 0;
+  ll count = 0;
+  ll sum = 0;
   while (right != n) {
     sum = vec[right] - vec[left];
     if (sum > r) {

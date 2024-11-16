@@ -3,12 +3,14 @@
 #include <iostream>
 #include <vector>
 
+using ll = long long int;
+
 int main() {
-  long long int n, k;
+  ll n, k;
   std::cin >> n >> k;
-  std::vector<long long int> numbers(n);
-  std::vector<long long int> answer;
-  std::deque<std::pair<long long int, long long int>> deq;
+  std::vector<ll> numbers(n);
+  std::vector<ll> answer;
+  std::deque<std::pair<ll, ll>> deq;
 
   for (int i = 0; i < n; i++) {
     std::cin >> numbers[i];

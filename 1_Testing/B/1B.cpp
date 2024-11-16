@@ -1,15 +1,17 @@
 #include <iostream>
 
+using ull = unsigned long long int;
+
 int main() {
-  unsigned long long int a, b, c, d, m, n = 0;
+  ull a, b, c, d, m, n = 0;
   std::cin >> a >> b >> c >> d;
 
-  unsigned long long int red_shirts = a + 1;
-  unsigned long long int blue_shirts = b + 1;
-  unsigned long long int red_socks = c + 1;
-  unsigned long long int blue_socks = d + 1;
-  unsigned long long int both_shirts = std::max(a, b) + 1;
-  unsigned long long int both_socks = std::max(c, d) + 1;
+  ull red_shirts = a + 1;
+  ull blue_shirts = b + 1;
+  ull red_socks = c + 1;
+  ull blue_socks = d + 1;
+  ull both_shirts = std::max(a, b) + 1;
+  ull both_socks = std::max(c, d) + 1;
 
   if (a == 0) {
     m = 1;

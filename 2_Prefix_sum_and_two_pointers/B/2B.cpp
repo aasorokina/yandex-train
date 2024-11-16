@@ -1,12 +1,14 @@
 #include <iostream>
 #include <vector>
 
+using ll = long long int;
+
 int main() {
   int n, k;
   std::cin >> n >> k;
   std::vector<int> vec(n);
-  std::vector<long long int> prefix(n + 1);
-  prefix[0] = 0;
+  std::vector<ll> prefix(n + 1, 0);
+
   for (int i = 0; i < n; i++) {
     std::cin >> vec[i];
     prefix[i + 1] = prefix[i] + vec[i];
@@ -14,7 +16,8 @@ int main() {
 
   int left = 0, right = 1; 
   int count = 0;
-  long long int sum = 0;
+  ll sum = 0;
+  
   while (right != n+1) {
     sum = prefix[right] - prefix[left];
     if (sum > k) {

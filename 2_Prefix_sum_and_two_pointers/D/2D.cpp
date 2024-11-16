@@ -2,26 +2,27 @@
 #include <iostream>
 #include <vector>
 
+using ll = long long int;
+
 int main() {
   int n, k;
   std::cin >> n >> k;
-  std::vector<long long int> vec(n);
+  std::vector<ll> vec(n);
   for (int i = 0; i < n; i++) {
     std::cin >> vec[i];
   }
+
   std::sort(vec.begin(), vec.end());
+  
   int left = 0, right = 1;
-  long long int count = 1;
-  long long int sum = 0;
+  ll count = 1;
+  ll sum = 0;
+
   while (right != n) {
     sum = vec[right] - vec[left];
-    if (sum > k) {
-      left++;
-      right++;
-    } else {
-      right++;
-      count++;
-    }
+    if (sum > k) left++;
+    else count++;
+    right++;
   }
   std::cout << count << "\n";
   return 0;

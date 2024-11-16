@@ -6,20 +6,34 @@
 using ull = unsigned long long int;
 using ll = long long int;
 
-std::deque<ll> calculate_answer(std::string const& input);
+std::deque<ll> calculate_answer(std::string const &input);
+bool get_polish(const std::string &input, std::string &polish_stack);
 
 int main() {
   std::string input;
   std::deque<ll> stack;
   std::string polish_stack;
-  std::deque<std::pair<char, int>> symbol_stack;
-  bool wrong = 0;
   std::getline(std::cin, input);
 
+  bool wrong = get_polish(input, polish_stack);
+
+  if (wrong)
+    std::cout << "WRONG\n";
+  else {
+    stack = calculate_answer(polish_stack);
+    std::cout << stack.back() << '\n';
+  }
+  return 0;
+}
+
+bool get_polish(const std::string &input, std::string &polish_stack) {
+  std::deque<std::pair<char, int>> symbol_stack;
+  bool wrong = 0;
   bool num = false;
   bool symb = false;
   bool br = false;
   int brackets = 0;
+
   for (ull i = 0; i < input.size() && wrong == false; i++) {
     if (input[i] >= '0' && input[i] <= '9' && num == false) {
       std::string number;
@@ -32,12 +46,9 @@ int main() {
       num = true;
       symb = false;
     }
-    if ((input[i] == '+' || input[i] == '-' || input[i] == '*' ||
-         input[i] == ' ') &&
+    if ((input[i] == '+' || input[i] == '-' || input[i] == '*') &&
         symb == false) {
-      if (input[i] != ' ') {
-        num = false;
-      }
+      num = false;
       if (input[i] == '+' || input[i] == '-') {
         if (i == 0 || br == true) polish_stack.append("0 ");
         while (!symbol_stack.empty() && symbol_stack.back().second <= 3 &&
@@ -81,22 +92,16 @@ int main() {
 
   if (brackets != 0 || symb == true) {
     wrong = true;
-  } else if (wrong != true) {
+  } else {
     while (!symbol_stack.empty()) {
       polish_stack += symbol_stack.back().first;
       symbol_stack.pop_back();
     }
-    stack = calculate_answer(polish_stack);
   }
-
-  if (wrong)
-    std::cout << "WRONG\n";
-  else
-    std::cout << stack.back() << '\n';
-  return 0;
+  return wrong;
 }
 
-std::deque<ll> calculate_answer(std::string const& input) {
+std::deque<ll> calculate_answer(std::string const &input) {
   std::deque<ll> stack;
   for (ull i = 0; i < input.size(); i++) {
     if (input[i] >= '0' && input[i] <= '9') {

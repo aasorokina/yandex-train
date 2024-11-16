@@ -1,12 +1,14 @@
 #include <iostream>
 #include <vector>
 
+using ll = long long int;
+
 int main() {
   int n;
   std::cin >> n;
   std::vector<int> vec(n);
-  std::vector<long long int> prefix(n + 1);
-  prefix[0] = 0;
+  std::vector<ll> prefix(n + 1, 0);
+ 
   for (int i = 0; i < n; i++) {
     std::cin >> vec[i];
     prefix[i + 1] = prefix[i] + vec[i];

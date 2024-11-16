@@ -2,8 +2,10 @@
 #include <iostream>
 #include <vector>
 
+using ull = unsigned long long int;
+
 int main() {
-  unsigned long long int n, c;
+  ull n, c;
   std::cin >> n >> c;
   std::string s;
   std::cin >> s;
@@ -15,11 +17,11 @@ int main() {
     prefix_b[i + 1] = prefix_b[i] + ((s[i] == 'b') ? 1 : 0);
   }
 
-  unsigned long long int left = 0;
-  unsigned long long int right = 1;
-  unsigned long long int max_len = 0;
-  unsigned long long int len = 0;
-  unsigned long long int diff = 0;
+  ull left = 0;
+  ull right = 1;
+  ull max_len = 0;
+  ull len = 0;
+  ull diff = 0;
 
   if (n <= 2) {
     if (c > 0) {
